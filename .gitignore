@@ -1,0 +1,14 @@
+# Build artifacts
+qnx_monitor
+*.o
+*.so
+*.a
+
+# QNX / Momentics
+.project
+.cproject
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
