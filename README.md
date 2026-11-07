@@ -1,11 +1,23 @@
 # QNX Real-Time Telemetry Codelab
 
-**A hands-on tutorial for the QNX Global Hackathon 2026 — Best Codelab / Tutorial track.**
+**Hands-on tutorial for the QNX Global Hackathon 2026 — Best Codelab / Tutorial track.**
+
+This repository is the complete step-by-step walkthrough. Judges can read the tutorial immediately in this README.
 
 Build and run a minimal real-time C telemetry daemon on QNX Neutrino 8.0.  
-Learn environment setup, cross-compilation with `qcc`, priority scheduling, and how to verify real-time behavior on QEMU or hardware.
+Learn environment setup, cross-compilation with `qcc`, priority scheduling, and how to verify real-time behavior on QNX / QEMU.
 
 ---
+
+## Repository Structure
+
+```
+qnx-telemetry-codelab-/
+├── README.md             # The step-by-step tutorial guide
+├── Makefile              # Cross-compilation script
+└── src/
+    └── qnx_monitor.c     # Real-time C telemetry daemon
+```
 
 ## What You Will Build
 
@@ -52,7 +64,7 @@ make
 
 The binary `qnx_monitor` is now ready.
 
-## 3. Run on QEMU (Recommended for Judges)
+## 3. Run on QNX / QEMU
 
 ### Quick QEMU image
 
@@ -102,36 +114,24 @@ pidin -p qnx_monitor
 
 You should see the worker thread at priority **50** with policy **FIFO** (shown as `50f` or similar).
 
-## Project Layout
-
-```
-qnx-telemetry-codelab-/
-├── README.md          ← you are here (the tutorial)
-├── Makefile            ← cross-compilation with qcc
-└── src/
-    └── qnx_monitor.c    ← real-time telemetry daemon
-```
-
 ## Key QNX Concepts Demonstrated
 
 | Concept | Where |
 |---------|-------|
-| Explicit scheduling (`PTHREAD_EXPLICIT_SCHED`) | `qnx_monitor.c` |
-| `SCHED_FIFO` + priority 50 | `qnx_monitor.c` |
-| `ClockCycles()` for high-resolution timing | `qnx_monitor.c` |
-| `delay()` for periodic sampling | `qnx_monitor.c` |
-| `pidin` to inspect thread priority | README step 4 |
-| `qcc -Vgcc_ntox86_64` cross-compilation | Makefile |
+| Explicit scheduling (`PTHREAD_EXPLICIT_SCHED`) | `src/qnx_monitor.c` |
+| `SCHED_FIFO` + priority 50 | `src/qnx_monitor.c` |
+| `ClockCycles()` for high-resolution timing | `src/qnx_monitor.c` |
+| `delay()` for periodic sampling | `src/qnx_monitor.c` |
+| `pidin` to inspect thread priority | Step 4 above |
+| `qcc` cross-compilation | Makefile |
 
-## Demo Video Checklist (2 minutes)
+## Demo Video Checklist (2 Minutes Max)
 
-Judges love seeing it work. Record:
+Record a quick screencast showing:
 
-1. `source ~/qnx800/qnxsdp-env.sh`
-2. `make` → successful build with `qcc`
-3. Boot QEMU (`mkqnximage --run`)
-4. Run `./qnx_monitor` and show the priority output
-5. Quickly run `pidin -p qnx_monitor` to confirm priority 50
+1. Sourcing the QNX SDP 8.0 environment variables (`source ~/qnx800/qnxsdp-env.sh`)
+2. Running `make` to successfully cross-compile the binary using `qcc`
+3. Running the executable on QNX / QEMU and verifying the real-time priority output (including a quick `pidin -p qnx_monitor`)
 
 ## Next Steps / Extensions
 
@@ -142,7 +142,7 @@ Judges love seeing it work. Record:
 
 ## License
 
-MIT — free for the community and the hackathon.
+MIT — see [LICENSE](LICENSE). Free for the community and the hackathon.
 
 ---
 
